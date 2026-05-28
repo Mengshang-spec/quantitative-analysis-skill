@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Quantitative Analysis"
+  short_description: "Quantitative data analysis: category weights, matrices, charts, and ML prediction"
+  default_prompt: "Run the quantitative analysis pipeline on the data file. If no file specified, auto-detect from data/raw/. The pipeline will: compute category frequency weights, build cross-tab weight matrices, generate weight distribution charts and heatmaps, and optionally run ML prediction."
