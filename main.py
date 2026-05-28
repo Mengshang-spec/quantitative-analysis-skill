@@ -112,7 +112,7 @@ def main():
         else:
             print("[SKIP] 只有一个分类列，跳过二维矩阵构建。如需矩阵请设置 MATRIX_COL_COL。")
 
-    # ====== 6. 预测建模 ======
+        # ====== 6. 预测建模 ======
     print("\n[6/6] 预测建模")
     if not DO_PREDICTION:
         print("[SKIP] DO_PREDICTION = False，跳过预测步骤")
@@ -129,7 +129,13 @@ def main():
                     save_dir=OUTPUT_DIR
                 )
 
-                # 预测结果可视化
+                # 全模型对比结果导出 CSV
+                if pred_result.get("comparison_df") is not None:
+                    cmp_path = os.path.join(OUTPUT_DIR, "model_comparison.csv")
+                    pred_result["comparison_df"].to_csv(cmp_path, index=False, encoding="utf-8-sig")
+                    print(f"[导出] 全模型对比: {cmp_path}")
+
+                # 预测结果可视化（仅回归有散点图）
                 if not pred_result["is_classification"]:
                     pred_path = os.path.join(OUTPUT_DIR, "prediction_results.png")
                     plot_prediction_results(
@@ -139,8 +145,7 @@ def main():
 
             except Exception as e:
                 print(f"[ERROR] 预测建模失败: {e}")
-                print("[INFO] 如果目标列是分类变量，可尝试在 config.py 中换一个数值目标列")
-
+                import traceback; traceback.print_exc()
     # ====== 完成 ======
     print("\n" + "=" * 60)
     print("     定量分析流程全部完成！")
@@ -190,3 +195,4 @@ def _create_sample_data():
 
 if __name__ == "__main__":
     main()
+

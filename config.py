@@ -49,7 +49,7 @@ TOP_N_CATEGORIES = 10            # 绘图中展示前 N 个类别
 
 # ====== 预测建模参数 ======
 TARGET_COL = None                # 预测目标列，None=自动选最后一列数值列
-MODEL_TYPE = "random_forest"     # 可选: "random_forest", "linear", "xgboost"
+MODEL_TYPE = "all"                # "all"全模型对比 / "random_forest" / "linear" / "xgboost" / "decision_tree" / "svm" / "knn" / "mlp" / ...
 RANDOM_SEED = 42
 TEST_SIZE = 0.2
 DO_PREDICTION = True             # 是否执行预测建模步骤
@@ -57,3 +57,4 @@ DO_PREDICTION = True             # 是否执行预测建模步骤
 # ====== 输出目录 ======
 OUTPUT_DIR = os.path.join(ROOT_DIR, "output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+
